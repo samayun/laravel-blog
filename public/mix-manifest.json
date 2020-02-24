@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/quaxlab.min.css": "/css/quaxlab.min.css",
+    "/js/quaxlab.min.js": "/js/quaxlab.min.js"
 }
