@@ -18,8 +18,8 @@
                             <i class="icon-envelope menu-icon"></i> <span class="nav-text">Users</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/">List</a></li>
-                            <li><a href="/">Add</a></li>
+                            <li><a href="{{ route('admin.users.index') }}">List</a></li>
+                            <li><a href="{{ route('admin.users.create') }}">Add</a></li>
                             <li><a href="/">Delete</a></li>
                         </ul>
                     </li>
