@@ -24,11 +24,12 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Photo</th>
                                         <th>Email</th>
                                         <th>Badge</th>
                                         <th>Active</th>
                                         <th>Created AT</th>
-                                        <th>Updated At</th>
+                                        <th>Action </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,6 +37,13 @@
                                     <tr>
                                         <td> {{ $user->id}}</td>
                                         <td> {{ $user->name}}</td>
+                                        <td>
+                                            @if($user->photo)
+                                               <img src="{{ $user->photo->file }}" class="img-responsive w-100 " alt="{{$user->photo->file}}">
+                                             @else
+                                                <img src="/images/default.png" class="img-responsive w-100"  alt="{{$user->name }}">
+                                             @endif
+                                        </td>
                                         <td> {{ $user->email}}</td>
                                         <td> <span class="badge badge-pill badge-{{ $user->role->name == 'administrator' ? 'primary' : 'danger' }}">{{ $user->role->name }}</span> </td>
                                         <td>
@@ -44,7 +52,9 @@
                                             </span>
                                         </td>
                                         <td> {{ $user->created_at ? $user->created_at->diffForHumans()  : "unknown" }}</td>
-                                        <td> {{ $user->updated_at ? $user->updated_at->diffForHumans() : "Not Updated " }}</td>
+                                        <td>
+                                        <a href="{{ route('admin.users.edit' , $user->id) }}" class="btn btn-info"> Update </a>
+                                        </td>
                                     </tr>
                                    @endforeach
 

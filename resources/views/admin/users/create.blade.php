@@ -43,11 +43,11 @@
                                 <div id="password-error" class="invalid-feedback animated fadeInDown" style="display: block;">Please provide a password</div></div>
                             </div>
                             <div class="form-group row is-invalid">
-                                <label class="col-lg-4 col-form-label" for="confirm-password">Confirm Password <span class="text-danger">*</span>
+                                <label class="col-lg-4 col-form-label" for="password_confirmation">Confirm Password <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="..and confirm it!" aria-required="true" aria-describedby="confirm-password-error">
-                                <div id="confirm-password-error" class="invalid-feedback animated fadeInDown" style="display: block;">Please provide a password</div></div>
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="..and confirm it!" aria-required="true" aria-describedby="password_confirmation-error">
+                                <div id="password_confirmation-error" class="invalid-feedback animated fadeInDown" style="display: block;">Please provide a password</div></div>
                             </div>
 
                             <div class="form-group row is-invalid">
