@@ -15,14 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin' ,'as' => 'admin.'], function () {
+Route::group(['middleware' =>  ['IsAdmin'],'namespace' => 'Admin', 'prefix' => 'admin' ,'as' => 'admin.'], function () {
 
    Route::resource('users', 'UserController');
+   Route::resource('posts', 'PostController');
 
 });
 
 
-
-
+Route::view('/404', 'admin.404');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

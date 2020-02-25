@@ -33,7 +33,7 @@
                                 <label class="col-lg-4 col-form-label" for="email">Email <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" autocomplete="off">
                                 <div id="email-error" class="invalid-feedback animated fadeInDown" style="display: block;">Please enter a valid email address</div></div>
                             </div>
 
@@ -104,6 +104,11 @@
                                 <div class="col-lg-8 ml-auto">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
+                                <from action={{ route('admin.users.destroy' , $user->id ) }} action="POST" class="col-lg-8 ml-auto" submit="return confirm('Are you sure to delete?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger" value="Delete" />
+                                </form>
                             </div>
                             </div>
                             {{-- col --}}

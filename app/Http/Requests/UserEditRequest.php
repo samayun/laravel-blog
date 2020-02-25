@@ -27,6 +27,8 @@ class UserEditRequest extends FormRequest
         // dd($this->request->get('id'));
         return [
             "email"      => ['required' , Rule::unique('users')->ignore($this->request->get('id')) ] ,
+            'password' => 'nullable|min:6|confirmed',
+            // 'password_confirmation' => 'required_if:password_confirmation,'. $this->request->get('password') . '|min:6',
             'name'       => "required",
             "role_id"    => 'required',
             "is_active"  => 'required',

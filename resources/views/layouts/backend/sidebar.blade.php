@@ -18,8 +18,18 @@
                             <i class="icon-envelope menu-icon"></i> <span class="nav-text">Users</span>
                         </a>
                         <ul aria-expanded="false">
+                            <li><a href="{{ route('admin.users.index') }}" class="bg-info text-white">All User</a></li>
                             <li><a href="{{ route('admin.users.create') }}">Add User</a></li>
                             <li><a href="/">Delete</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Posts</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('admin.posts.index') }}"> All Post</a></li>
+                            <li><a href="{{ route('admin.posts.create') }}"> Create Post </a></li>
                         </ul>
                     </li>
                     <li>
@@ -31,15 +41,7 @@
                             <li><a href="/">List</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Posts</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/">Add</a></li>
-                            <li><a href="/">List</a></li>
-                        </ul>
-                    </li>
+
 
                 </ul>
             </div>

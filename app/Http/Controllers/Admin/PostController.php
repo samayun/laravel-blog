@@ -7,13 +7,13 @@ use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserRequest;
 use App\Model\Photo;
 use Illuminate\Http\Request;
-use App\User;
+use App\Model\Post;
 use App\Model\Role;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class UserController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +22,8 @@ class UserController extends Controller
      */
     public function index()
     {
-      $users = User::all();
-       return view("admin.users.index" , compact('users'));
+      $posts = Post::all();
+       return view("admin.posts.index" , compact('posts'));
     }
 
     /**
@@ -34,7 +34,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::select('id', 'name')->get();
-        return view("admin.users.create" , compact('roles'));
+        return view("admin.posts.create" , compact('roles'));
     }
 
     /**
@@ -55,8 +55,8 @@ class UserController extends Controller
            $input['photo_id'] = $photo->id;
         }
 
-        User::create($input);
-        return redirect()->route('admin.users.index');
+        Post::create($input);
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -65,11 +65,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserControllerer $user)
+    public function show(UserControllerer $Post)
     {
-        $user = User::findOrFail($user->id);
-        if ($user) {
-            return view("admin.users.show");
+        $Post = Post::findOrFail($Post->id);
+        if ($Post) {
+            return view("admin.posts.show");
         }
 
        return view('errors.404');
@@ -81,12 +81,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Post $Post)
     {
-        $user = User::findOrFail($user->id);
+        $Post = Post::findOrFail($Post->id);
         $roles = Role::select('id', 'name')->get();
-        if ($user) {
-            return view("admin.users.edit" , compact('user','roles'));
+        if ($Post) {
+            return view("admin.posts.edit" , compact('Post','roles'));
         }
         return view('admin.404');
     }
@@ -98,35 +98,35 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserEditRequest $request, User $user)
+    public function update(UserEditRequest $request, Post $Post)
     {
        if ($request->password == "") {
         $user_input = $request->only(['name','email','role_id','is_active' ,'passsword']);
        }else{
             $user_input = $request->only(['name','email','role_id','is_active']);
        }
-        $user = User::findOrFail($user->id);
+        $Post = Post::findOrFail($Post->id);
         $roles = Role::select('id', 'name')->get();
 
         // if request has file
         if ($request->hasFile('photo_id')) {
             $file = $request->file('photo_id');
             $name = time() . $file->getClientOriginalName();
-            if($user->photo){
-                $this->removeImage($user->photo->file );
+            if($Post->photo){
+                $this->removeImage($Post->photo->file );
             }
            $file->move('images' ,$name);
            $photo = Photo::create(['file' => $name ]);
            $user_input['photo_id'] = $photo->id;
         }
 
-        $user->update($user_input);
-        return redirect()->route('admin.users.index');
+        $Post->update($user_input);
+        return redirect()->route('admin.posts.index');
     }
 
     // public function customValidate($request , $id){
     //     $validation = Validator::make($request->all(),[
-    //         'emali' => Rule::unique('users', 'email')->ignore($id)
+    //         'emali' => Rule::unique('posts', 'email')->ignore($id)
     //     ]);
     //     return $validation;
     // }
@@ -143,21 +143,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Post $Post)
     {
-        // Check exitance of the user
-        $user = User::findOrFail($user->id);
+        // Check exitance of the Post
+        $Post = Post::findOrFail($Post->id);
         // is he has any photo uploaded will beremoved from storage
-        if($user->photo){
-            $this->removeImage($user->photo->file );
+        if($Post->photo){
+            $this->removeImage($Post->photo->file );
         }
         // Delete image from database's photos table also
-        $user->photo()->delete();
+        $Post->photo()->delete();
 
-        // User deleted from datavase
-        $user->delete();
+        // Post deleted from datavase
+        $Post->delete();
         // Flashing delete message via Session
         Session::flash('deleted_user', 'Successfully delete') ;
-         return redirect()->route('admin.users.index');
+         return redirect()->route('admin.posts.index');
     }
 }

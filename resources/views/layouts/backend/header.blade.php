@@ -103,7 +103,7 @@
                                                 </div>
                                             </a>
                                         </li>
- 
+
                                         <li>
                                             <a href="javascript:void()">
                                                 <img class="float-left mr-3 avatar-img" src="/quaxlab/images/avatar/4.jpg" alt="">
@@ -155,7 +155,7 @@
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li><a href="javascript:void()">English</a></li>
-                                        <li><a href="javascript:void()">Dutch</a></li>
+                                        <li><a href="javascript:void()">Bangla</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -163,8 +163,10 @@
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
+
                                 <img src="/quaxlab/images/user/1.png" height="40" width="40" alt="">
-                            </div>
+                                Samayun Chowdhury
+                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
@@ -181,7 +183,7 @@
                                         <li>
                                             <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
                                         </li>
-                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="/"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
