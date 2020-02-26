@@ -27,7 +27,7 @@
                                         <th>ID</th>
                                         <th>Owner</th>
                                         <th>Category</th>
-                                        <th>Photo </th>
+                                        {{--  <th>Photo </th>  --}}
                                         <th>Title</th>
                                         <th>Body</th>
                                         <th>Created AT</th>
@@ -40,14 +40,13 @@
                                         <td> {{ $post->id}}</td>
                                         <td> {{ $post->user->name}}</td>
                                         <td> {{ $post->category ? $post->category->name : "Uncategorized" }} </td>
-
-                                        <td>
+                                        {{--  <td>
                                             @if($post->photo)
-                                               <img src="{{ $post->photo->file }}" height="70px" class=" img-responsive " alt="{{$post->photo->file}}">
+                                               <img src="{{ $post->photo->file }}" height="70px" class=" img-responsive w-25" alt="{{$post->photo->file}}">
                                              @else
-                                                <img src="/images/default.png" height="70px" class=" img-responsive "  alt="{{$post->name }}">
+                                                <img src="/images/default.png" height="70px" class=" img-responsive w-25"  alt="{{$post->name }}">
                                              @endif
-                                        </td>
+                                        </td>  --}}
                                         <td> {{ $post->title}}</td>
                                         <td> {{ substr($post->body , 0,50) }}</td>
                                         {{--  <td> <span class="badge badge-pill badge-{{ $post->role && $post->role->name == 'administrator' ? 'primary' : 'danger' }}">{{ $post->role->name }}</span> </td>  --}}
@@ -59,6 +58,8 @@
                                         <td> {{ $post->created_at ? $post->created_at->diffForHumans()  : "unknown" }}</td>
                                         <td >
                                             <a href="{{ route('admin.posts.edit' , $post->id) }}" class="btn btn-sm btn-info"> Update </a>
+                                            <a href="{{ route('post.show' , $post->id) }}" class=""> VIew Post </a>
+                                            <a href="{{ route('admin.comments.show' , $post->id) }}" class=""> View  Comment </a>
 
                                         </td>
                                     </tr>

@@ -71,7 +71,9 @@ class PostCommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        // dd($comment);
+        Comment::findOrFail( $comment->id )->update($request->all());
+        return redirect()->route('admin.comments.index');
     }
 
     /**
@@ -82,6 +84,7 @@ class PostCommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        Comment::findOrFail( $comment->id )->delete();
+        return redirect()->route('admin.comments.index');
     }
 }

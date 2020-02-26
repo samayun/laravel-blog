@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
+use App\Model\Comment;
 use App\Model\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -16,7 +18,8 @@ class ProjectController extends Controller
     public function index()
     {
        $posts = Post::latest()->get();
-       return $posts;
+    //    return $posts;
+         return view('client.posts.index' , compact('posts'));
     }
 
     /**
@@ -37,7 +40,17 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $data = [
+            'post_id' => $request->post_id ,
+            'author' => $user->name ,
+            'email' => $user->email,
+            'photo' => $user->photo->file,
+            'body' => $request->body
+        ];
+        Comment::create($data);
+        $request->session()->flash('comment_message' , 'Your message has been submitted to be approved ! ');
+         return redirect()->back();
     }
 
     /**
@@ -49,7 +62,7 @@ class ProjectController extends Controller
     public function show($id)
     {
        $post = Post::findOrFail($id);
-       return $post;
+       return view('client.posts.show' , compact('post'));
     }
 
     /**

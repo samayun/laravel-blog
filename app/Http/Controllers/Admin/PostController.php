@@ -67,7 +67,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserControllerer $Post)
+    public function show(PostControllerer $Post)
     {
         $Post = Post::findOrFail($Post->id);
         if ($Post) {
