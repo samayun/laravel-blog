@@ -13,7 +13,7 @@ class PostEditRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class PostEditRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'category_id' => "required",
+            // "photo_id" => "required",
+            // "user_id" => 'required',
+            "title" => 'required',
+            "body" => 'required',
+            'photo' => 'mimes:jpeg,bmp,png,jpg'
         ];
     }
 }

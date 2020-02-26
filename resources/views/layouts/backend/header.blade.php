@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="quaxlab/images/favicon.png">
 
     <link href="{{ asset('css/quaxlab.min.css') }}" rel="stylesheet">
-
+    @stack('css')
 </head>
 
 <body>
@@ -164,8 +164,8 @@
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
 
-                                <img src="/quaxlab/images/user/1.png" height="40" width="40" alt="">
-                                Samayun Chowdhury
+                                <img src="{{ Auth::user()->photo ? Auth::user()->photo->file : '/images/default.png' }}" height="40" width="40" alt="">
+                               {{ Auth::user()->name }}
                              </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">

@@ -25,11 +25,11 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Photo</th>
-                                        <th>Email</th>
-                                        <th>Badge</th>
-                                        <th>Active</th>
+                                        <th>Owner</th>
+                                        <th>Category</th>
+                                        <th>Photo </th>
+                                        <th>Title</th>
+                                        <th>Body</th>
                                         <th>Created AT</th>
                                         <th>Action </th>
                                     </tr>
@@ -38,21 +38,24 @@
                                     @foreach($posts as $post)
                                     <tr>
                                         <td> {{ $post->id}}</td>
-                                        <td> {{ $post->name}}</td>
+                                        <td> {{ $post->user->name}}</td>
+                                        <td> {{ $post->category ? $post->category->name : "Uncategorized" }} </td>
+
                                         <td>
                                             @if($post->photo)
-                                               <img src="{{ $post->photo->file }}" height="50px" class=" img-responsive w-100 " alt="{{$post->photo->file}}">
+                                               <img src="{{ $post->photo->file }}" height="70px" class=" img-responsive " alt="{{$post->photo->file}}">
                                              @else
-                                                <img src="/images/default.png" height="50px" class=" img-responsive w-100"  alt="{{$post->name }}">
+                                                <img src="/images/default.png" height="70px" class=" img-responsive "  alt="{{$post->name }}">
                                              @endif
                                         </td>
-                                        <td> {{ $post->email}}</td>
-                                        <td> <span class="badge badge-pill badge-{{ $post->role->name == 'administrator' ? 'primary' : 'danger' }}">{{ $post->role->name }}</span> </td>
-                                        <td>
+                                        <td> {{ $post->title}}</td>
+                                        <td> {{ substr($post->body , 0,50) }}</td>
+                                        {{--  <td> <span class="badge badge-pill badge-{{ $post->role && $post->role->name == 'administrator' ? 'primary' : 'danger' }}">{{ $post->role->name }}</span> </td>  --}}
+                                        {{--  <td>
                                              <span class="badge badge-pill badge-{{ $post->is_active == 1 ? 'light' : 'danger' }}">
                                                 {{ $post->is_active == '1' ? 'Active' : 'Unactive' }}
                                             </span>
-                                        </td>
+                                        </td>  --}}
                                         <td> {{ $post->created_at ? $post->created_at->diffForHumans()  : "unknown" }}</td>
                                         <td >
                                             <a href="{{ route('admin.posts.edit' , $post->id) }}" class="btn btn-sm btn-info"> Update </a>
@@ -62,7 +65,7 @@
                                    @endforeach
 
                                 </tbody>
-                                {{-- <tfoot>
+                                {{--  <tfoot>
                                     <tr>
                                         <th>Name</th>
                                         <th>Position</th>
@@ -71,7 +74,7 @@
                                         <th>Start date</th>
                                         <th>Salary</th>
                                     </tr>
-                                </tfoot> --}}
+                                </tfoot>  --}}
                             </table>
                         </div>
                     </div>
@@ -85,7 +88,10 @@
 
 
 @push('scripts')
-  <script src="{{ asset('quaxlab/plugins/tables/js/jquery.dataTables.min.js') }} "></script>
-  <script src="{{ asset('quaxlab/plugins/tables/js/datatable/dataTables.bootstrap4.min.js') }} "></script>
-  <script src="{{ asset('quaxlab/plugins/tables/js/datatable-init/datatable-basic.min.js') }} "></script>
+<script src="{{ asset('quaxlab/js/dashboard/dashboard-1.js') }} "></script>
+
+<script src="{{ asset('quaxlab/plugins/tables/js/jquery.dataTables.min.js') }} "></script>
+<script src="{{ asset('quaxlab/plugins/tables/js/datatable/dataTables.bootstrap4.min.js') }} "></script>
+<script src="{{ asset('quaxlab/plugins/tables/js/datatable-init/datatable-basic.min.js') }} "></script>
+
 @endpush

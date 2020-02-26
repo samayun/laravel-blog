@@ -19,6 +19,10 @@ Route::group(['middleware' =>  ['IsAdmin'],'namespace' => 'Admin', 'prefix' => '
 
    Route::resource('users', 'UserController');
    Route::resource('posts', 'PostController');
+   Route::resource('media', 'MediaController');
+   Route::resource('categories', 'CategoryController');
+   Route::resource('comments', 'PostCommentController');
+   Route::resource('comment/replies', 'CommentReplyController');
 
 });
 
@@ -26,3 +30,6 @@ Route::group(['middleware' =>  ['IsAdmin'],'namespace' => 'Admin', 'prefix' => '
 Route::view('/404', 'admin.404');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/post/{id}', 'Project\ProjectController@show')->name('project.show');
+Route::get('/posts', 'Project\ProjectController@index')->name('project');

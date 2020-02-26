@@ -29,9 +29,7 @@
                                 </label>
                                 <div class="col-lg-6">
                                     <input type="file" class="form-control" id="file"
-                                    name="photo_id"  aria-required="true"
-
-                                    aria-describedby="email-error">
+                                    name="photo_id">
                                 <div id="file-error" class="invalid-feedback animated fadeInDown"
                                 style="display: block;">Please enter a valid image </div></div>
                             </div>

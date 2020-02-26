@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserEditRequest;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostEditRequest;
 use App\Model\Photo;
 use Illuminate\Http\Request;
 use App\Model\Post;
-use App\Model\Role;
+use App\Model\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class PostController extends Controller
@@ -33,8 +34,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $roles = Role::select('id', 'name')->get();
-        return view("admin.posts.create" , compact('roles'));
+        $categories = Category::select('id', 'name')->get();
+        return view("admin.posts.create" , compact('categories'));
     }
 
     /**
@@ -43,10 +44,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(PostRequest $request)
     {
         $input = $request->all();
-
+        $user = Auth::user();
+        // dd($input);
         if ($request->hasFile('photo_id')) {
            $file = $request->file('photo_id');
            $name = time() . $file->getClientOriginalName();
@@ -54,8 +56,8 @@ class PostController extends Controller
            $photo = Photo::create(['file' => $name ]);
            $input['photo_id'] = $photo->id;
         }
-
-        Post::create($input);
+        $user->posts()->create($input);
+        // Post::create($input);
         return redirect()->route('admin.posts.index');
     }
 
@@ -81,12 +83,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $Post)
+    public function edit(Post $post)
     {
-        $Post = Post::findOrFail($Post->id);
-        $roles = Role::select('id', 'name')->get();
-        if ($Post) {
-            return view("admin.posts.edit" , compact('Post','roles'));
+        $post = Post::findOrFail($post->id);
+        $categories = Category::select('id', 'name')->get();
+        if ($post) {
+            return view("admin.posts.edit" , compact('post','categories'));
         }
         return view('admin.404');
     }
@@ -98,29 +100,33 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserEditRequest $request, Post $Post)
+    public function update(PostEditRequest $request, Post $post)
     {
-       if ($request->password == "") {
-        $user_input = $request->only(['name','email','role_id','is_active' ,'passsword']);
+       if ($request->photo_id == "") {
+        $user_input = $request->only(['title','body','category_id'  ,'photo_id']);
        }else{
-            $user_input = $request->only(['name','email','role_id','is_active']);
+            $user_input = $request->only(['title','body','category_id']);
        }
-        $Post = Post::findOrFail($Post->id);
-        $roles = Role::select('id', 'name')->get();
+        $found_post = Post::findOrFail($post->id);
+        $categories = Category::select('id', 'name')->get();
 
         // if request has file
         if ($request->hasFile('photo_id')) {
             $file = $request->file('photo_id');
             $name = time() . $file->getClientOriginalName();
-            if($Post->photo){
-                $this->removeImage($Post->photo->file );
+            if($found_post->photo){
+                $this->removeImage($found_post->photo->file );
             }
            $file->move('images' ,$name);
            $photo = Photo::create(['file' => $name ]);
            $user_input['photo_id'] = $photo->id;
         }
+       $auth_user = Auth::user()->posts()->whereId($post->id)->first();
+        $auth_user->update($user_input);
 
-        $Post->update($user_input);
+        // $post->update($user_input);
+        // $updated_post = Auth::user()->posts()->update($user_input)->where('id' , $post->id)->first();
+        // $updated_post->dd();
         return redirect()->route('admin.posts.index');
     }
 
@@ -143,21 +149,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $Post)
+    public function destroy(Post $post)
     {
         // Check exitance of the Post
-        $Post = Post::findOrFail($Post->id);
-        // is he has any photo uploaded will beremoved from storage
-        if($Post->photo){
-            $this->removeImage($Post->photo->file );
-        }
-        // Delete image from database's photos table also
-        $Post->photo()->delete();
+        $found_post = Post::findOrFail($post->id);
 
-        // Post deleted from datavase
-        $Post->delete();
-        // Flashing delete message via Session
+        // is he has any photo uploaded will beremoved from storage
+        if($found_post->photo){
+            $this->removeImage($found_post->photo->file );
+        }
+
+        // Delete image from database's photos table also
+        $found_post->photo()->delete();
+
+        // Post deleted from database
+        $found_post->delete();
+
+        // Flashing delete message via Session & redirecting to /admin/posts
         Session::flash('deleted_user', 'Successfully delete') ;
-         return redirect()->route('admin.posts.index');
+     return redirect()->route('admin.posts.index');
     }
 }

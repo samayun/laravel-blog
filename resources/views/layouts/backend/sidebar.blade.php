@@ -13,8 +13,9 @@
                     </li>
 
                     <li class="nav-label">Admin Activity</li>
+
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a class="has-arrow  @if (Request::is('admin/users/*')) bg-info text-white @endif" href="javascript:void()" aria-expanded="false">
                             <i class="icon-envelope menu-icon"></i> <span class="nav-text">Users</span>
                         </a>
                         <ul aria-expanded="false">
@@ -23,8 +24,9 @@
                             <li><a href="/">Delete</a></li>
                         </ul>
                     </li>
+
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a class="has-arrow @if (Request::is('admin/posts/*')) bg-info text-white @endif" href="javascript:void()" aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Posts</span>
                         </a>
                         <ul aria-expanded="false">
@@ -32,16 +34,25 @@
                             <li><a href="{{ route('admin.posts.create') }}"> Create Post </a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Category</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/">Add</a></li>
-                            <li><a href="/">List</a></li>
-                        </ul>
-                    </li>
 
+
+                    {{--  @if (Route::has('admin/categories/*'))  --}}
+                    <li>
+                        <a class=" @if (Request::is('admin/categories/*')) bg-info text-white @endif" href="{{ route('admin.categories.index') }}" aria-expanded="false">
+                         <span class="nav-text">Category</span>
+                        </a>
+                    </li>
+                    {{--  @endif  --}}
+                    <li>
+                        <a class=" @if (Request::is('admin/media*')) bg-info text-white @endif" href="{{ route('admin.media.index') }}" aria-expanded="false">
+                         <span class="nav-text">Media</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class=" @if (Request::is('admin/comments*')) bg-info text-white @endif" href="{{ route('admin.comments.index') }}" aria-expanded="false">
+                         <span class="nav-text" > Comments </span>
+                        </a>
+                    </li>
 
                 </ul>
             </div>
