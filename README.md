@@ -1,78 +1,170 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+<img src="docs/images/logo.png" alt="Laravel Blog" style="margin: 0px 15%;text-align:center;"/>
 
-## About Laravel
+##  :heart: Application Name: <b style="color:green;"> Laravel Blog  </>
+<p> Simple Blog </p>
+</b>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+ ## :hugs: Requirements
+        *  PHP >= 7.2
+        *  MySQL 
+        *  Apache 
+        *  Laravel >= 6.0
+        *  Composer
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+##  :clap: Installation:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```
+    composer install
 
-## Learning Laravel
+    npm install
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    php artisan cache:clear
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    php artisan key:generate
 
-## Laravel Sponsors
+    php artisan serve
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+<table width="80%" style="margin-top:10px;margin-bottom:10px;color:yellow;font-weight:bold;background:#012;">
+    <thead>
+        <th style="text-align:center;margin-left: 120px;width:40%;color:#fff">Packages</th>
+        <th style="text-align:center;margin-left: 120px;width:40%;color:#fff"> Install Command </th>
+    </thead>
+    <tbody>
+        <tr>
+            <td> "laravel/ui": "^3.0" </td>
+            <td> composer require laravel/ui --dev </td>
+    </tbody>
+</table>
 
-## Contributing
+ ## :hand: Features
+* #### ;) Backend
+    * **Caching** 
+    *  Authentication : ( *Multi Guard* ) Session based Authentication
+    *  **Repository Pattern**
+    *  Packages & Stub
+    *  Model Observer ( used for cache deleting)
+    *  Authorization: Gate, Policies 
+    *  Requests, Validation , Refactoring & File Upload
+    *  Scope Filter in Model
+    *  ORM for MySQL ( Elequent ORM )
+        *  
+* ### :* Frontend:
+    * Frontend Framework : `Vue Js`
+    * Library : `IViewUi`, `Vue-owl-carousel`,`VueX`,`Vue-router`,`lodash`,`jQuery`,`axios`
+    * `Admin LTE 3`
+    * **Dynamic/ Auto Import Modules (Store, Routes) in frontend**
+    * **Localization : Mutliple Languege (Bangla + English implemented) by `vue-i18n`** 
+    * Light/Dark Theme & Grid/List Layout
+    * Code Spliting , Lazy Loading , Less Ajax request
+    * 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<table width="80%" style="margin-top:10px;margin-bottom:10px;color:yellow;font-weight:bold;background:#210;">
+    <thead>
+        <th style="text-align:center;margin-left: 120px;width:40%;color:#fff">Node Packages</th>
+        <th style="text-align:center;margin-left: 120px;width:40%;color:#fff"> Install Command </th>
+        <th style="color:#fff"> Why Use It  </th>
+    </thead>
+    <tbody>
+        <tr>
+            <td> "@fortawesome/fontawesome-free": "^5.15.1", </td>
+            <td> npm install @fortawesome/fontawesome-free </td>
+        <tr> 
+            <td>   "admin-lte": "^3.0.5" </td>
+            <td> npm install admin-lte </td>
+            <td> Open Source Dashboard </td>
+        </tr>
+        <tr> 
+            <td>  "moment": "^2.29.1" </td>
+            <td> npm install admin-lte </td>
+        </tr> 
+        <tr> 
+            <td> "view-design": "^4.4.0-rc.4"," </td>
+            <td> npm install view-design </td>
+            <td> UI Widget Component Library </td>
+        </tr>
+        <tr> 
+            <td> "vue-i18n": "^8.22.1"," </td>
+            <td> npm install vue-i18n </td>
+            <td> Localization </td>
+        </tr> 
+        <tr> 
+            <td> "vform": "^1.0.1"," </td>
+            <td> npm install v-form </td>
+            <td> Form Validation </td>
+        </tr> 
+        <tr> 
+            <td> "vuex": "^3.5.1" </td>
+            <td> npm install vuex </td>
+            <td> State Management </td>
+        </tr> 
+        <tr> 
+            <td> "vue-router": "^3.4.6", </td>
+            <td> npm install vue-router </td>
+            <td> Routing   </td>
+        </tr> 
+        <tr> 
+            <td> "vuex-extensions": "^1.1.5", </td>
+            <td> npm install vue-extensions </td>
+            <td> RESET State & Mixins in Vuex (Tiny package) </td>
+        </tr> 
+        <tr> 
+            <td>"vue-owl-carousel": "^2.0.3", </td>
+            <td> npm install vue-owl-carousel </td>
+            <td> Owl Carousel   </td>
+        </tr> 
+        <tr> 
+            <td> "vuex-persistedstate": "^4.0.0-beta.1" </td>
+            <td> npm install vue-router </td>
+            <td> Routing   </td>
+        </tr> 
+        <tr> 
+            <td>"vue-magnifier": "^1.0.6", </td>
+            <td> npm install vue-magnifier </td>
+            <td>  Zoom Image  </td>
+        </tr> 
+        <tr> 
+            <td>"vue-awesome-notifications": "^3.1.1", </td>
+            <td> npm install vue-awesome-notifications </td>
+            <td>    </td> 
+        </tr> 
+        <tr> 
+            <td> "@zeitiger/elevatezoom": "^2.5.4", </td>
+            <td> npm install @zeitiger/elevatezoom </td>
+            <td>    </td>
+        </tr>
+    </tbody>
+</table>
 
-## Security Vulnerabilities
+## :sa: Roles:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<table>
+    <thead>
+        <th>Role</th>
+        <th>URL</th>
+        <th>Email</th>
+        <th>Password</th>
+        </thead>
+    <tbody>
+        <tr> 
+            <td>Admin</td>
+            <td> /admin/login </td>
+            <td>admin@admin.com</td>
+            <td> 123456 </td>
+        </tr>
+        <tr> 
+            <td> Customer / User </td>
+            <td> `/login` </td>
+            <td>user@user.com</td>
+            <td>123456</td>
+        </tr>
+    </tbody>
+</table>
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+ :heart: Happy Coding  :clap:
+
